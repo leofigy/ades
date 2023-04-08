@@ -1,0 +1,68 @@
+
+{{define "inicio"}}
+
+{{template "cabecera"}}
+
+<a name="" id="" class="btn btn-primary" href="/crear" role="button">Agregar estudiante</a>
+<a name="" id="" class="btn btn-primary" href="/nuevaTarea" role="button">Agragar tarea</a>
+<a name="" id="" class="btn btn-primary" href="/asistenacias" role="button">Observar asitencias</a>
+
+
+
+</br>
+</br>
+
+<label><b>Selecciona una tarea</b></label>
+<select name="select">
+  <option value="value1">Value 1</option>
+  <option value="value2" selected>Value 2</option>
+  <option value="value3">Value 3</option>
+</select>
+
+</br>
+</br>
+</br>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
+            <th>¿Entrego la tarea?</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+
+    {{range.}}
+        <tr>
+            <td>{{.IdEstudiante}}</td>
+             <td>{{.Nombre}}</td>
+            <td>{{.ApellidoPaterno}}</td>
+            <td>{{.ApellidoMaterno}}</td>
+            <td><label><input type="checkbox" id="cbox1" value="first_checkbox">Tarea</label><br></td>
+
+            
+
+        </tr>
+
+    {{end}}
+        
+    </tbody>
+</table>
+</br>
+
+<a name="NewTarea" id="" class="btn btn-primary" href="/newtarea?id={}" role="button">
+             
+                Calificar
+             
+             </a>
+
+</br>
+</br>
+{{template "pie"}}
+
+
+{{end}}
