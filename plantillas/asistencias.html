@@ -1,0 +1,45 @@
+
+{{define "asistencias"}}
+
+{{template "cabecera"}}
+
+
+<table class="table">
+
+    <!-- table for students -->
+    <thead>
+        <tr>
+            <th>Alumno</th>
+            <th>RFID</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    {{range .Asistencias}}
+        <tr>
+            <td>{{.Alumno}}</td>
+            <td>{{.RFID}}</td>
+            <td>{{.Fecha}}</td>
+        </tr>
+    {{end}}
+
+
+    </tbody>
+</table>
+    <!-- table for tutores-->
+
+</br>
+
+<a name="NewTarea" id="" class="btn btn-primary" href="/newtarea?id={}" role="button">
+
+                Calificar
+
+             </a>
+
+</br>
+</br>
+{{template "pie"}}
+
+
+{{end}}

@@ -184,10 +184,29 @@ func MateriaBorrar(c *gin.Context) {
 }
 
 func UIAsistencias(c *gin.Context) {
+	// pending to validate
+	db, err := helperGetDB(c)
+
+	if err != nil {
+		UIError(
+			http.StatusInternalServerError,
+			err,
+			c,
+		)
+		return
+	}
+
+	asistencias := []UIAsistenciaResult{}
+
+	db.Order("fecha desc").Table("asistencia").Select("estudiantes.id, estudiantes.nombre, estudiantes.apellido_materno, estudiantes.apellido_paterno ,estudiantes.rf_id", "asistencia.fecha").Joins("left join estudiantes on estudiantes.id = asistencia.estudiante_id").Scan(&asistencias)
+	// ponganle paginacion xD es decir el boton de next
+	log.Println(asistencias)
 	c.HTML(
 		http.StatusOK,
-		"crear",
-		gin.H{})
+		"asistencias",
+		gin.H{
+			"Asistencias": asistencias,
+		})
 }
 
 func UINotFound(c *gin.Context) {
