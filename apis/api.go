@@ -41,6 +41,7 @@ func GetAPIs(provider contracts.Provider) *gin.Engine {
 	r.POST("/tutores", CrearTutores)
 
 	// Internal APIs (just (REST))
+	r.GET("/sensor/asistencia", RegistrarAsistencia)
 
 	return r
 }
