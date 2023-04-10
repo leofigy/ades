@@ -1,0 +1,43 @@
+{{define "creartutor"}}
+{{template "cabecera"}}
+
+<<div class="card">
+    <div class="card-header"> Tutores </div>
+    <div class="card-body">
+
+    <form method="POST" action="/tutores">
+        </br>
+
+        <div class="form-group">
+          <label for="">Nombre</label>
+          <input type="text"
+            class="form-control" name="nombre" id="nombre" aria-describedby="helpId" placeholder="Ingresa un nombre">
+          <small id="helpId" class="form-text text-muted">Help text</small>
+        </div>
+
+        <div class="form-group">
+          <label for="">Apellido Paterno</label>
+          <input type="text"
+            class="form-control" name="ApellidoPaterno" id="ApellidoPaterno" aria-describedby="helpId" placeholder="Ingresa un Apellido Paterno">
+          <small id="helpId" class="form-text text-muted">Help text</small>
+        </div>
+
+
+        <div class="form-group">
+          <label for="">Apellido Materno</label>
+          <input type="text"
+            class="form-control" name="ApellidoMaterno" id="ApellidoMaterno" aria-describedby="helpId" placeholder="Ingresa un Apellido Materno">
+          <small id="helpId" class="form-text text-muted">Help text</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Agregar</button>
+
+    </form>
+
+    </div>
+</div>
+
+
+{{template "pie"}}
+
+{{end}}

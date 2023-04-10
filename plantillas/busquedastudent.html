@@ -1,0 +1,52 @@
+
+{{define "busquedastudent"}}
+
+{{template "cabecera"}}
+
+
+<table class="table">
+
+    <!-- table for students -->
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
+            <th>RFID</th>
+            <th>tutor</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+    {{range .Estudiantes}}
+        <tr>
+            <td>{{.ID}}</td>
+             <td>{{.Nombre}}</td>
+            <td>{{.ApellidoPaterno}}</td>
+            <td>{{.ApellidoMaterno}}</td>
+            <td>{{.RFID}}</td>
+            <td>{{.MiTutor.Nombre}} {{.MiTutor.ID}}</td>
+        </tr>
+    {{end}}
+
+
+    </tbody>
+</table>
+    <!-- table for tutores-->
+
+</br>
+
+<a name="NewTarea" id="" class="btn btn-primary" href="/newtarea?id={}" role="button">
+
+                Calificar
+
+             </a>
+
+</br>
+</br>
+{{template "pie"}}
+
+
+{{end}}
