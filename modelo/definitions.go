@@ -3,6 +3,9 @@ package modelo
 // for testing in sqlite (all included)
 
 import (
+	"log"
+
+	"gorm.io/driver/mysql"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -32,13 +35,15 @@ type Materia struct {
 }
 
 type DBProvider struct {
-	db       *gorm.DB
-	location string
+	db          *gorm.DB
+	location    string
+	production  bool
+	credentials string
 }
 
-func NewProvider(location string) DBProvider {
+func NewProvider(location string, production bool, credentials string) DBProvider {
 	return DBProvider{
-		nil, location,
+		nil, location, production, credentials,
 	}
 }
 
@@ -53,7 +58,21 @@ func (provider *DBProvider) GetDB() (*gorm.DB, error) {
 // database
 // db location
 func (provider *DBProvider) InitModels() error {
-	db, err := gorm.Open(sqlite.Open(provider.location), &gorm.Config{})
+
+	var (
+		db  *gorm.DB
+		err error
+	)
+
+	if provider.production {
+		log.Println("-------- production -------")
+		db, err = gorm.Open(
+			mysql.Open(provider.credentials), &gorm.Config{},
+		)
+	} else {
+		log.Println("-------- starting in testing mode -------")
+		db, err = gorm.Open(sqlite.Open(provider.location), &gorm.Config{})
+	}
 
 	if err != nil {
 		return nil

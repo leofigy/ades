@@ -26,13 +26,10 @@ func init() {
 }
 
 func main() {
-
 	flag.Parse()
-	if len(DBCredentials) == 0 {
-		production = false
-	}
 
-	provider := modelo.NewProvider("datos.db")
+	production := len(DBCredentials) > 0
+	provider := modelo.NewProvider("datos.db", production, DBCredentials)
 
 	_, err := provider.GetDB()
 
