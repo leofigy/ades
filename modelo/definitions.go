@@ -79,6 +79,7 @@ func (provider *DBProvider) InitModels() error {
 	}
 
 	db.AutoMigrate(
+		&Estudiante{},
 		&Asistencia{},
 		&Rendimiento{},
 		&Tutor{},
